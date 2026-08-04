@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ملف: index.html
+  البورتفوليو الشخصي — حسن أمجد حميد
+  التصميم: Neobrutalism UI (الوحشية الجديدة)
+  اللغات: العربية (افتراضية RTL) + الإنجليزية (LTR)
+  ============================================================
+-->
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ================= SEO ================= -->
+  <title>حسن أمجد حميد | Hassan Amjad Hamid — Software Developer</title>
+  <meta name="description" content="حسن أمجد حميد — مطور برمجيات ومهندس ذكاء اصطناعي من جامعة بابل. تطوير ويب، تطبيقات سطح المكتب، تطبيقات الهاتف، والذكاء الاصطناعي." />
+  <meta name="keywords" content="حسن أمجد حميد, Hassan Amjad Hamid, Software Developer, AI Engineer, Flutter, Web Developer, Portfolio, البرمجة, الذكاء الاصطناعي" />
+  <meta name="author" content="Hassan Amjad Hamid" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#F5F4FF" />
+  <link rel="canonical" href="https://hassan-portfolio.com/" />
+
+  <!-- ================= Open Graph ================= -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="حسن أمجد حميد | Hassan Amjad Hamid" />
+  <meta property="og:description" content="مطور برمجيات ومهندس ذكاء اصطناعي — Software Developer & AI Engineer Portfolio" />
+  <meta property="og:image" content="assets/images/profile.jpg" />
+  <meta property="og:url" content="https://hassan-portfolio.com/" />
+  <meta property="og:locale" content="ar_IQ" />
+  <meta property="og:locale:alternate" content="en_US" />
+
+  <!-- ================= Twitter Cards ================= -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="حسن أمجد حميد | Hassan Amjad Hamid" />
+  <meta name="twitter:description" content="Software Developer & AI Engineer Portfolio" />
+  <meta name="twitter:image" content="assets/images/profile.jpg" />
+
+  <!-- ================= Favicon (يمكنك تغييره بأيقونتك الخاصة) ================= -->
+  <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg" />
+
+  <!-- ================= الخطوط (Fonts) ================= -->
+  <!-- خط Cairo للعربية و Space Grotesk للإنجليزية — يمكن تحميلهما لاحقاً إلى assets/fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- ================= ملف التنسيقات ================= -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ============================================================
+       شاشة التحميل (Loading Screen)
+  ============================================================ -->
+  <div class="loader" id="loader" aria-hidden="true">
+    <div class="loader-card">
+      <div class="loader-shapes">
+        <span class="ls ls-1"></span>
+        <span class="ls ls-2"></span>
+        <span class="ls ls-3"></span>
+      </div>
+      <p class="loader-text" data-i18n="loading">جارٍ التحميل...</p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       الخلفية المتحركة (Grid + أشكال عائمة + توهج الماوس)
+  ============================================================ -->
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="floating-shapes" id="floatingShapes" aria-hidden="true"></div>
+  <div class="mouse-glow" id="mouseGlow" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       المؤشر المخصص (Custom Cursor)
+  ============================================================ -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- ============================================================
+       شريط التنقل (Navbar)
+  ============================================================ -->
+  <header class="navbar" id="navbar">
+    <a href="#home" class="logo">
+      <span class="logo-badge">HA</span>
+      <span class="logo-text" data-i18n="logo_text">حسن أمجد</span>
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="القائمة الرئيسية">
+      <a href="#home" class="nav-link active" data-i18n="nav_home">الرئيسية</a>
+      <a href="#about" class="nav-link" data-i18n="nav_about">من أنا</a>
+      <a href="#skills" class="nav-link" data-i18n="nav_skills">المهارات</a>
+      <a href="#projects" class="nav-link" data-i18n="nav_projects">المشاريع</a>
+      <a href="#journey" class="nav-link" data-i18n="nav_journey">المسار</a>
+      <a href="#services" class="nav-link" data-i18n="nav_services">الخدمات</a>
+      <a href="#contact" class="nav-link" data-i18n="nav_contact">تواصل</a>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- زر تبديل اللغة: العربية ⇄ الإنجليزية -->
+      <button class="lang-btn btn-ripple" id="langToggle" type="button" data-i18n-lang aria-label="تبديل اللغة">
+        English
+      </button>
+      <!-- زر قائمة الهاتف -->
+      <button class="menu-btn btn-ripple" id="menuBtn" type="button" aria-label="فتح القائمة">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         قسم البطل (Hero Section)
+    ============================================================ -->
+    <section class="hero section" id="home">
+      <div class="hero-card" id="heroCard">
+
+        <!-- النصوص -->
+        <div class="hero-text">
+          <span class="hero-greeting" data-i18n="hero_greeting">مرحباً 👋</span>
+
+          <h1 class="hero-name">
+            <span data-i18n="hero_name_1">أنا</span>
+            <span class="name-gradient" data-i18n="hero_name_2">حسن أمجد حميد</span>
+          </h1>
+
+          <!-- تأثير الكتابة المتحركة -->
+          <div class="hero-role" aria-live="polite">
+            <span class="typing" id="typing"></span>
+            <span class="typing-caret"></span>
+          </div>
+
+          <p class="hero-sub" data-i18n="hero_sub">
+            طالب في قسم البرمجيات بجامعة بابل — شغوف بتحويل الأفكار إلى تطبيقات حقيقية.
+          </p>
+
+          <!-- الأزرار -->
+          <div class="hero-buttons">
+            <!-- زر تحميل السيرة الذاتية: ضع ملف سيرتك الذاتية هنا (مثال assets/images/CV.pdf) -->
+            <a href="assets/images/CV.pdf" class="btn btn-primary btn-ripple" download data-i18n="hero_cv">تحميل السيرة الذاتية</a>
+            <a href="#contact" class="btn btn-secondary btn-ripple" data-i18n="hero_contact">تواصل معي</a>
+          </div>
+
+          <!-- شارات صغيرة -->
+          <div class="hero-chips">
+            <span class="chip" data-i18n="hero_chip1">🎓 جامعة بابل</span>
+            <span class="chip" data-i18n="hero_chip2">💻 3+ سنوات</span>
+            <span class="chip" data-i18n="hero_chip3">🚀 شغوف بالتكنولوجيا</span>
+          </div>
+        </div>
+
+        <!-- الصورة الشخصية -->
+        <div class="hero-image" data-parallax-container>
+          <!-- ========================================================
+               صورتك الشخصية: ضع صورتك هنا في assets/images/profile.jpg
+               (الـ placeholder الحالي: assets/images/profile.svg)
+               احذف صورة الـ placeholder واستبدلها بصورتك الشخصية
+          ========================================================= -->
+          <img src="assets/images/profile.jpg" alt="صورة حسن أمجد حميد — Hassan Amjad Hamid" class="profile-img" data-parallax-speed="0.15" />
+
+          <!-- ملصقات (Stickers) زخرفية فوق الصورة -->
+          <span class="sticker sticker-1" data-parallax-speed="0.3">🤖 <b data-i18n="sticker_ai">ذكاء اصطناعي</b></span>
+          <span class="sticker sticker-2" data-parallax-speed="0.25">⚡ <b data-i18n="sticker_code">برمجة</b></span>
+          <span class="sticker sticker-3" data-parallax-speed="0.35">✨ <b data-i18n="sticker_design">تصميم UI</b></span>
+
+          <!-- شريط زخرفي أسفل الصورة -->
+          <div class="hero-image-shape" aria-hidden="true"></div>
+        </div>
+
+      </div>
+
+      <!-- مؤشر التمرير للأسفل -->
+      <a href="#about" class="scroll-hint" aria-label="مرر للأسفل">
+        <span class="scroll-mouse"><span class="scroll-wheel"></span></span>
+        <span data-i18n="scroll_text">مرر للأسفل</span>
+      </a>
+    </section>
+
+    <!-- ============================================================
+         قسم: من أنا (About)
+    ============================================================ -->
+    <section class="section" id="about">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="about_badge">تعرف علي 👋</span>
+        <h2 class="section-title" data-i18n="about_title">من أنا</h2>
+        <p class="section-sub" data-i18n="about_sub">قصة قصيرة عن رحلتي مع البرمجة والتكنولوجيا</p>
+      </div>
+
+      <div class="about-card reveal">
+        <div class="about-info">
+          <h3 class="about-heading" data-i18n="about_heading">مطور برمجيات وشغوف بالذكاء الاصطناعي 🤖</h3>
+          <p class="about-para" data-i18n="about_p1">
+            أنا طالب في قسم البرمجيات بجامعة بابل، شغوف بتطوير البرمجيات والذكاء الاصطناعي وتعلم التقنيات الحديثة.
+          </p>
+          <p class="about-para" data-i18n="about_p2">
+            لدي خبرة في تطوير مواقع الويب، تطبيقات سطح المكتب، تطبيقات الهاتف، بالإضافة إلى مشاريع الذكاء الاصطناعي والتعلم الآلي والتعلم العميق. أحب بناء واجهات احترافية وتحويل الأفكار إلى تطبيقات حقيقية.
+          </p>
+
+          <!-- معلومات شخصية -->
+          <ul class="about-list">
+            <li><span class="about-icon" aria-hidden="true">🎓</span> <b data-i18n="about_edu">التعليم:</b> <span data-i18n="about_edu_v">جامعة بابل — تكنولوجيا المعلومات — البرمجيات</span></li>
+            <li><span class="about-icon" aria-hidden="true">📍</span> <b data-i18n="about_loc">الموقع:</b> <span data-i18n="about_loc_v">العراق — بابل</span></li>
+            <li><span class="about-icon" aria-hidden="true">🗓️</span> <b data-i18n="about_age_lbl">العمر:</b> <span data-i18n="about_age_v">23 سنة</span></li>
+            <li><span class="about-icon" aria-hidden="true">💼</span> <b data-i18n="about_work">الحالة:</b> <span data-i18n="about_work_v">مستقل (Freelancer)</span></li>
+          </ul>
+        </div>
+
+        <!-- الإحصائيات -->
+        <div class="stats-grid">
+          <div class="stat-card reveal" style="--i:0; --c:#E9DCFF;">
+            <span class="stat-icon" aria-hidden="true">🎂</span>
+            <div class="stat-num"><span data-count="23">0</span></div>
+            <span class="stat-label" data-i18n="stat_age">العمر</span>
+          </div>
+          <div class="stat-card reveal" style="--i:1; --c:#FFE4C4;">
+            <span class="stat-icon" aria-hidden="true">🚀</span>
+            <div class="stat-num"><span data-count="4">0</span>+</div>
+            <span class="stat-label" data-i18n="stat_projects">المشاريع</span>
+          </div>
+          <div class="stat-card reveal" style="--i:2; --c:#B6F5C8;">
+            <span class="stat-icon" aria-hidden="true">🧠</span>
+            <div class="stat-num"><span data-count="10">0</span>+</div>
+            <span class="stat-label" data-i18n="stat_skills">المهارات</span>
+          </div>
+          <div class="stat-card reveal" style="--i:3; --c:#FFE58A;">
+            <span class="stat-icon" aria-hidden="true">❤️</span>
+            <div class="stat-num"><span data-count="100">0</span>%</div>
+            <span class="stat-label" data-i18n="stat_passion">الشغف</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         قسم: المهارات (Skills)
+    ============================================================ -->
+    <section class="section" id="skills">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="skills_badge">ماذا أجيد؟ 💪</span>
+        <h2 class="section-title" data-i18n="skills_title">مهاراتي</h2>
+        <p class="section-sub" data-i18n="skills_sub">لغات برمجة وتقنيات أتعامل معها باحتراف</p>
+      </div>
+
+      <div class="skills-grid">
+
+        <!-- مهارة: C++ -->
+        <div class="skill-card reveal" style="--i:0; --c:#E9DCFF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7l-5 5 5 5"/><path d="M15 7l5 5-5 5"/><path d="M13 5v14"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_cpp">سي بلس بلس</h3>
+          <div class="skill-bar"><span data-percent="85"></span></div>
+          <span class="skill-percent" data-percent-label="85">85%</span>
+        </div>
+
+        <!-- مهارة: Java -->
+        <div class="skill-card reveal" style="--i:1; --c:#FFE4C4;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V8z"/><path d="M17 10h1a3 3 0 0 1 0 6h-1"/><path d="M8 5.5h1.5M11 5.5h1.5"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_java">جافا</h3>
+          <div class="skill-bar"><span data-percent="80"></span></div>
+          <span class="skill-percent" data-percent-label="80">80%</span>
+        </div>
+
+        <!-- مهارة: Python -->
+        <div class="skill-card reveal" style="--i:2; --c:#B6F5C8;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H9a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6"/><path d="M15 3V1M9 21H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h6"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_python">بايثون</h3>
+          <div class="skill-bar"><span data-percent="90"></span></div>
+          <span class="skill-percent" data-percent-label="90">90%</span>
+        </div>
+
+        <!-- مهارة: HTML5 -->
+        <div class="skill-card reveal" style="--i:3; --c:#FFE4C4;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-4 17M16 3l4 17M10 9l-1.5 6h3M14 9l.6 2.6M12.5 15h1.2M6 3h12"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_html">HTML5</h3>
+          <div class="skill-bar"><span data-percent="95"></span></div>
+          <span class="skill-percent" data-percent-label="95">95%</span>
+        </div>
+
+        <!-- مهارة: CSS3 -->
+        <div class="skill-card reveal" style="--i:4; --c:#F9B4D0;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3l-4 17M16 3l4 17M12 8l-2 8M14 8l-1.6 6.4"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_css">CSS3</h3>
+          <div class="skill-bar"><span data-percent="92"></span></div>
+          <span class="skill-percent" data-percent-label="92">92%</span>
+        </div>
+
+        <!-- مهارة: JavaScript -->
+        <div class="skill-card reveal" style="--i:5; --c:#FFE58A;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M10 9v6a2 2 0 0 0 4 0v-2M10 12h3.5"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_js">جافاسكريبت</h3>
+          <div class="skill-bar"><span data-percent="88"></span></div>
+          <span class="skill-percent" data-percent-label="88">88%</span>
+        </div>
+
+        <!-- مهارة: Flutter -->
+        <div class="skill-card reveal" style="--i:6; --c:#D9F1FF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/><path d="M10.5 7.5l6 6-6 6" opacity=".7"/><path d="M14 11l6 6-6 6" opacity=".4"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_flutter">فلتر</h3>
+          <div class="skill-bar"><span data-percent="85"></span></div>
+          <span class="skill-percent" data-percent-label="85">85%</span>
+        </div>
+
+        <!-- مهارة: Dart -->
+        <div class="skill-card reveal" style="--i:7; --c:#E9DCFF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M8.5 10l3.5-3.5L16 10l-4 4-3.5-4z"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_dart">دارت</h3>
+          <div class="skill-bar"><span data-percent="82"></span></div>
+          <span class="skill-percent" data-percent-label="82">82%</span>
+        </div>
+
+        <!-- مهارة: الذكاء الاصطناعي -->
+        <div class="skill-card reveal" style="--i:8; --c:#F9B4D0;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3 11.2V16h6v-1.8A6 6 0 0 0 12 3z"/><path d="M9 19h6M10 22h4"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_ai">الذكاء الاصطناعي</h3>
+          <div class="skill-bar"><span data-percent="86"></span></div>
+          <span class="skill-percent" data-percent-label="86">86%</span>
+        </div>
+
+        <!-- مهارة: التعلم الآلي -->
+        <div class="skill-card reveal" style="--i:9; --c:#B6F5C8;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="8" width="14" height="10" rx="2"/><circle cx="9.5" cy="13" r="1.3"/><circle cx="14.5" cy="13" r="1.3"/><path d="M12 8V5.5M9.5 5.5h5"/><path d="M5 11.5H3"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_ml">التعلم الآلي</h3>
+          <div class="skill-bar"><span data-percent="84"></span></div>
+          <span class="skill-percent" data-percent-label="84">84%</span>
+        </div>
+
+        <!-- مهارة: التعلم العميق -->
+        <div class="skill-card reveal" style="--i:10; --c:#E9DCFF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><circle cx="5" cy="17" r="2"/><circle cx="19" cy="17" r="2"/><circle cx="12" cy="20" r="2"/><path d="M11 6L6 15M13 6l5 9M6.5 19l4.5-1M17.5 19l-4.5-1"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_dl">التعلم العميق</h3>
+          <div class="skill-bar"><span data-percent="80"></span></div>
+          <span class="skill-percent" data-percent-label="80">80%</span>
+        </div>
+
+        <!-- مهارة: تطبيقات سطح المكتب -->
+        <div class="skill-card reveal" style="--i:11; --c:#FFE4C4;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_desktop">تطبيقات سطح المكتب</h3>
+          <div class="skill-bar"><span data-percent="85"></span></div>
+          <span class="skill-percent" data-percent-label="85">85%</span>
+        </div>
+
+        <!-- مهارة: تطوير الويب -->
+        <div class="skill-card reveal" style="--i:12; --c:#D9F1FF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a14 14 0 0 1 0 16M12 4a14 14 0 0 0 0 16"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_web">تطوير الويب</h3>
+          <div class="skill-bar"><span data-percent="93"></span></div>
+          <span class="skill-percent" data-percent-label="93">93%</span>
+        </div>
+
+        <!-- مهارة: تطبيقات الهاتف -->
+        <div class="skill-card reveal" style="--i:13; --c:#F9B4D0;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10.5 18.5h3"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_mobile">تطبيقات الهاتف</h3>
+          <div class="skill-bar"><span data-percent="83"></span></div>
+          <span class="skill-percent" data-percent-label="83">83%</span>
+        </div>
+
+        <!-- مهارة: Git -->
+        <div class="skill-card reveal" style="--i:14; --c:#FFE58A;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="8" r="2"/><path d="M6 8v8M18 10c0 4.5-4 4.5-6 4.5"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_git">جيت</h3>
+          <div class="skill-bar"><span data-percent="90"></span></div>
+          <span class="skill-percent" data-percent-label="90">90%</span>
+        </div>
+
+        <!-- مهارة: GitHub -->
+        <div class="skill-card reveal" style="--i:15; --c:#E9DCFF;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-2.2 13.6c.4.1.5-.2.5-.4v-1.5c-2 .4-2.4-.8-2.4-.8-.3-.9-.8-1.1-.8-1.1-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.8.9 2.2.7a1.7 1.7 0 0 1 .5-1c-1.7-.2-3.5-.9-3.5-3.9a3 3 0 0 1 .8-2.1 2.8 2.8 0 0 1 .1-2.1s.7-.2 2.2.8a7.6 7.6 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1 .2 1.6.1 2.1a3 3 0 0 1 .8 2.1c0 3-1.8 3.7-3.5 3.9.3.2.5.7.5 1.4v2c0 .2.1.5.5.4A7 7 0 0 0 12 2z"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_github">جيت هاب</h3>
+          <div class="skill-bar"><span data-percent="88"></span></div>
+          <span class="skill-percent" data-percent-label="88">88%</span>
+        </div>
+
+        <!-- مهارة: حل المشكلات -->
+        <div class="skill-card reveal" style="--i:16; --c:#B6F5C8;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 4h4v3h5a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3v4a1 1 0 0 1-1 1h-4v-3a2 2 0 0 0-4 0v3H5a1 1 0 0 1-1-1v-4h3a2 2 0 0 0 0-4H4V8a1 1 0 0 1 1-1h5V4z"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_solve">حل المشكلات</h3>
+          <div class="skill-bar"><span data-percent="92"></span></div>
+          <span class="skill-percent" data-percent-label="92">92%</span>
+        </div>
+
+        <!-- مهارة: تصميم الواجهات -->
+        <div class="skill-card reveal" style="--i:17; --c:#FFE4C4;">
+          <div class="skill-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a2.8 2.8 0 0 0-4-4l-7 7-1.5 5.5L12 19z"/><path d="M13.5 8.5l2 2"/></svg>
+          </div>
+          <h3 class="skill-name" data-i18n="sk_ui">تصميم الواجهات</h3>
+          <div class="skill-bar"><span data-percent="87"></span></div>
+          <span class="skill-percent" data-percent-label="87">87%</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         قسم: المشاريع (Projects)
+    ============================================================ -->
+    <section class="section" id="projects">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="projects_badge">أعمالي المميزة 🏆</span>
+        <h2 class="section-title" data-i18n="projects_title">مشاريعي</h2>
+        <p class="section-sub" data-i18n="projects_sub">أحدث المشاريع التي عملت عليها بكل شغف</p>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- ===== المشروع 1 ===== -->
+        <article class="project-card reveal" style="--i:0;">
+          <!-- صورة المشروع: ضع صورة مشروعك هنا في assets/images/project1.jpg -->
+          <div class="project-media">
+            <img src="assets/images/project1.jpg" alt="نظام إدارة سطح المكتب — Desktop Management System" loading="lazy" />
+            <span class="project-tag">💻</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="p1_title">نظام إدارة سطح المكتب</h3>
+            <p class="project-desc" data-i18n="p1_desc">نظام احترافي لإدارة قاعات الرياضية والموظفين والعملاء.</p>
+            <div class="project-tech">
+              <span>C++</span><span>Java</span><span data-i18n="p1_tech3">قواعد البيانات</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small btn-ripple" data-i18n="btn_github">جيت هاب</a>
+              <a href="#" class="btn btn-small btn-dark btn-ripple" data-i18n="btn_demo">معاينة مباشرة</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== المشروع 2 ===== -->
+        <article class="project-card reveal" style="--i:1;">
+          <!-- صورة المشروع: ضع صورة مشروعك هنا في assets/images/project2.jpg -->
+          <div class="project-media">
+            <img src="assets/images/project2.jpg" alt="تطبيق فلاتر للهاتف — Flutter Mobile App" loading="lazy" />
+            <span class="project-tag">📱</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="p2_title">تطبيق فلاتر للهاتف</h3>
+            <p class="project-desc" data-i18n="p2_desc">تطبيق هاتف حديث يعمل على Android و iPhone.</p>
+            <div class="project-tech">
+              <span>Flutter</span><span>Dart</span><span>Firebase</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small btn-ripple" data-i18n="btn_github">جيت هاب</a>
+              <a href="#" class="btn btn-small btn-dark btn-ripple" data-i18n="btn_demo">معاينة مباشرة</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== المشروع 3 ===== -->
+        <article class="project-card reveal" style="--i:2;">
+          <!-- صورة المشروع: ضع صورة مشروعك هنا في assets/images/project3.jpg -->
+          <div class="project-media">
+            <img src="assets/images/project3.jpg" alt="مشروع ذكاء اصطناعي — AI Project" loading="lazy" />
+            <span class="project-tag">🤖</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="p3_title">مشروع ذكاء اصطناعي</h3>
+            <p class="project-desc" data-i18n="p3_desc">مشروع ذكاء اصطناعي يعتمد على Machine Learning و Deep Learning.</p>
+            <div class="project-tech">
+              <span>Python</span><span>TensorFlow</span><span>Scikit-learn</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small btn-ripple" data-i18n="btn_github">جيت هاب</a>
+              <a href="#" class="btn btn-small btn-dark btn-ripple" data-i18n="btn_demo">معاينة مباشرة</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ===== المشروع 4 ===== -->
+        <article class="project-card reveal" style="--i:3;">
+          <!-- صورة المشروع: ضع صورة مشروعك هنا في assets/images/project4.jpg -->
+          <div class="project-media">
+            <img src="assets/images/project4.jpg" alt="موقع ويب احترافي — Professional Website" loading="lazy" />
+            <span class="project-tag">🌐</span>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title" data-i18n="p4_title">موقع ويب احترافي</h3>
+            <p class="project-desc" data-i18n="p4_desc">موقع ويب احترافي سريع ومتجاوب.</p>
+            <div class="project-tech">
+              <span>HTML5</span><span>CSS3</span><span>JavaScript</span>
+            </div>
+            <div class="project-links">
+              <a href="#" class="btn btn-small btn-ripple" data-i18n="btn_github">جيت هاب</a>
+              <a href="#" class="btn btn-small btn-dark btn-ripple" data-i18n="btn_demo">معاينة مباشرة</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         قسم: المسار الزمني (Timeline)
+    ============================================================ -->
+    <section class="section" id="journey">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="journey_badge">رحلة التعلم 🗺️</span>
+        <h2 class="section-title" data-i18n="journey_title">مسار رحلتي</h2>
+        <p class="section-sub" data-i18n="journey_sub">محطات مهمة في رحلة التعليم والتطوير</p>
+      </div>
+
+      <div class="timeline">
+
+        <div class="timeline-item reveal" style="--i:0;">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card card-edu">
+            <span class="timeline-date">2022 — الآن</span>
+            <h3 class="timeline-title" data-i18n="tl1_title">جامعة بابل</h3>
+            <p class="timeline-desc" data-i18n="tl1_desc">كلية تكنولوجيا المعلومات — قسم البرمجيات.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="--i:1;">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card card-project">
+            <span class="timeline-date">2023 — الآن</span>
+            <h3 class="timeline-title" data-i18n="tl2_title">مشاريع البرمجة</h3>
+            <p class="timeline-desc" data-i18n="tl2_desc">تطوير مواقع وتطبيقات سطح المكتب وتطبيقات الهاتف.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="--i:2;">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card card-ai">
+            <span class="timeline-date">2024 — الآن</span>
+            <h3 class="timeline-title" data-i18n="tl3_title">الذكاء الاصطناعي والتعلم الآلي</h3>
+            <p class="timeline-desc" data-i18n="tl3_desc">دراسة Machine Learning و Deep Learning وتطبيقها في مشاريع حقيقية.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item reveal" style="--i:3;">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <div class="timeline-card card-flutter">
+            <span class="timeline-date">2025 — الآن</span>
+            <h3 class="timeline-title" data-i18n="tl4_title">تطوير تطبيقات فلاتر</h3>
+            <p class="timeline-desc" data-i18n="tl4_desc">بناء تطبيقات هاتف حديثة تعمل على Android و iPhone.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         قسم: الخدمات (Services)
+    ============================================================ -->
+    <section class="section" id="services">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="services_badge">ماذا أقدم؟ 🛠️</span>
+        <h2 class="section-title" data-i18n="services_title">خدماتي</h2>
+        <p class="section-sub" data-i18n="services_sub">حلول برمجية احترافية تناسب فكرتك</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal" style="--i:0; --c:#D9F1FF;">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M4 12h16M12 4a14 14 0 0 1 0 16M12 4a14 14 0 0 0 0 16"/></svg>
+          </div>
+          <h3 class="service-title" data-i18n="svc_web">تطوير المواقع</h3>
+          <p class="service-desc" data-i18n="svc_web_d">مواقع ويب سريعة، متجاوبة، ومصممة بعناية لجميع الأجهزة.</p>
+        </div>
+
+        <div class="service-card reveal" style="--i:1; --c:#E9DCFF;">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+          </div>
+          <h3 class="service-title" data-i18n="svc_desktop">تطبيقات سطح المكتب</h3>
+          <p class="service-desc" data-i18n="svc_desktop_d">أنظمة إدارة وتطبيقات سطح مكتب احترافية بواجهات سهلة.</p>
+        </div>
+
+        <div class="service-card reveal" style="--i:2; --c:#FFE4C4;">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4l6 6-6 6"/><path d="M10.5 7.5l6 6-6 6" opacity=".7"/><path d="M14 11l6 6-6 6" opacity=".4"/></svg>
+          </div>
+          <h3 class="service-title" data-i18n="svc_flutter">تطبيقات فلاتر</h3>
+          <p class="service-desc" data-i18n="svc_flutter_d">تطبيقات هاتف جميلة تعمل على Android و iPhone من كود واحد.</p>
+        </div>
+
+        <div class="service-card reveal" style="--i:3; --c:#B6F5C8;">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0-3 11.2V16h6v-1.8A6 6 0 0 0 12 3z"/><path d="M9 19h6M10 22h4"/></svg>
+          </div>
+          <h3 class="service-title" data-i18n="svc_ai">حلول الذكاء الاصطناعي</h3>
+          <p class="service-desc" data-i18n="svc_ai_d">مشاريع ذكاء اصطناعي وتعلم آلي وتحليل بيانات ذكية.</p>
+        </div>
+
+        <div class="service-card reveal" style="--i:4; --c:#F9B4D0;">
+          <div class="service-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7a2.8 2.8 0 0 0-4-4l-7 7-1.5 5.5L12 19z"/><path d="M13.5 8.5l2 2"/></svg>
+          </div>
+          <h3 class="service-title" data-i18n="svc_ui">تصميم واجهات المستخدم</h3>
+          <p class="service-desc" data-i18n="svc_ui_d">تصميم واجهات حديثة وسهلة الاستخدام بأسلوب مميز.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         قسم: تواصل معي (Contact)
+    ============================================================ -->
+    <section class="section" id="contact">
+      <div class="section-head reveal">
+        <span class="section-badge" data-i18n="contact_badge">لنتحدث! 💬</span>
+        <h2 class="section-title" data-i18n="contact_title">تواصل معي</h2>
+        <p class="section-sub" data-i18n="contact_sub">سأكون سعيداً بالرد عليك في أي وقت</p>
+      </div>
+
+      <div class="contact-card reveal">
+        <!-- معلومات التواصل -->
+        <div class="contact-info">
+          <h3 class="contact-heading" data-i18n="contact_heading">هيا نعمل معاً 🚀</h3>
+          <p class="contact-text" data-i18n="contact_text">
+            عندك فكرة مشروع؟ حاب تتعاون معي؟ أرسل لي رسالة وسأعود إليك في أقرب وقت.
+          </p>
+
+          <div class="contact-rows">
+            <!-- البريد الإلكتروني -->
+            <a class="contact-row" href="mailto:hassan2004it@gmail.com">
+              <span class="contact-row-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              </span>
+              <span class="contact-row-text">
+                <b data-i18n="contact_email_lbl">البريد الإلكتروني</b>
+                <small data-i18n-placeholder="contact_email_v">hassan2004it@gmail.com</small>
+              </span>
+            </a>
+
+            <!-- الهاتف -->
+            <a class="contact-row" href="tel:07702281209">
+              <span class="contact-row-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg>
+              </span>
+              <span class="contact-row-text">
+                <b data-i18n="contact_phone_lbl">الهاتف</b>
+                <small data-i18n-placeholder="contact_phone_v">07702281209</small>
+              </span>
+            </a>
+
+            <!-- الموقع -->
+            <div class="contact-row">
+              <span class="contact-row-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-6-5.2-6-10a6 6 0 0 1 12 0c0 4.8-6 10-6 10z"/><circle cx="12" cy="11" r="2.2"/></svg>
+              </span>
+              <span class="contact-row-text">
+                <b data-i18n="contact_loc_lbl">الموقع</b>
+                <small data-i18n-placeholder="contact_loc_v">العراق — بابل</small>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- أيقونات التواصل الاجتماعي -->
+        <div class="contact-social">
+          <h4 class="contact-social-title" data-i18n="contact_social_title">تابعني على</h4>
+
+          <!-- ضع روابط حساباتك الشخصية في الـ href أدناه -->
+          <div class="social-grid">
+            <!-- GitHub -->
+            <a href="#" class="social-btn btn-ripple" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-2.2 13.6c.4.1.5-.2.5-.4v-1.5c-2 .4-2.4-.8-2.4-.8-.3-.9-.8-1.1-.8-1.1-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.8.9 2.2.7a1.7 1.7 0 0 1 .5-1c-1.7-.2-3.5-.9-3.5-3.9a3 3 0 0 1 .8-2.1 2.8 2.8 0 0 1 .1-2.1s.7-.2 2.2.8a7.6 7.6 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.4 1 .2 1.6.1 2.1a3 3 0 0 1 .8 2.1c0 3-1.8 3.7-3.5 3.9.3.2.5.7.5 1.4v2c0 .2.1.5.5.4A7 7 0 0 0 12 2z"/></svg>
+              <span data-i18n="soc_github">جيت هاب</span>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="" class="social-btn btn-ripple" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 10v6M8 7.5v.01M12 16v-4a2 2 0 0 1 4 0v4"/></svg>
+              <span data-i18n="soc_linkedin">لينكد إن</span>
+            </a>
+
+            <!-- Telegram -->
+            <a href="https://t.me/et90l" class="social-btn btn-ripple" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 4L3 11l5 2 2 6 3-4 5 3 3-14z"/><path d="M8 13l9-7"/></svg>
+              <span data-i18n="soc_telegram">تيليغرام</span>
+            </a>
+
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/et90l?igsh=MTBpcnlhb29vaGF1cw==" class="social-btn btn-ripple" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="12" cy="12" r="3.5"/><path d="M16.5 7.5v.01"/></svg>
+              <span data-i18n="soc_instagram">إنستغرام</span>
+            </a>
+          </div>
+
+          <div class="contact-cta">
+            <span class="contact-cta-icon" aria-hidden="true">📩</span>
+            <p class="contact-cta-text" data-i18n="contact_cta">جاهز للبدء؟ أرسل لي رسالة الآن</p>
+            <!-- البريد: ضع بريدك هنا -->
+            <a href="mailto:hassan2004it@gmail.com" class="btn btn-primary btn-ripple" data-i18n="contact_btn">أرسل رسالة</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       الفوتر (Footer)
+  ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="#home" class="logo">
+        <span class="logo-badge">HA</span>
+        <span class="logo-text" data-i18n="logo_text">حسن أمجد</span>
+      </a>
+
+      <p class="footer-text" data-i18n="footer_text">صنع  بواسطة حسن أمجد حميد</p>
+
+      <p class="footer-rights" data-i18n="footer_rights">© 2026 — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <!-- زر العودة إلى الأعلى -->
+  <button class="back-to-top btn-ripple" id="backToTop" type="button" aria-label="العودة إلى الأعلى" data-i18n="top_aria">↑</button>
+
+  <!-- ================= ملف الجافاسكريبت ================= -->
+  <script src="script.js"></script>
+</body>
+</html>
